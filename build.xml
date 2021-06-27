@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Antproject" default="run">
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <get src="https://ant.apache.org/" dest="test/index.html"/>
+
+    <target name="compile">
+        <javac includeantruntime="false" srcdir="./src" destdir = "test">
+        </javac>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Hello.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="packagenew.Hello"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname = "com.antproject.Hello">
+            <classpath path="test">
+            </classpath>
+        </java>
+    </target>
+
+
+    <target name="doc">
+        <javadoc packagenames="packagenew" sourcepath="src" destdir="test">
+        </javadoc>
+    </target>
+
+
+</project>
